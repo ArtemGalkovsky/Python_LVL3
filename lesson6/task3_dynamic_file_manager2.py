@@ -133,7 +133,7 @@ class ConsoleFileManager:
 
             print("CURRENT PATH:", self.current_path)
             print("Command output:", previous_command_output)
-            print("1 - Select/Execute (1 <file/dir/link>)   2 - Back    3 - Create    4 - Delete    5 - Exit")
+            print("1 - Select/Execute (1 <file/dir/link>)   2 - Back    3 - Create    4 - Delete (4 <file/dir/link>)    5 - Exit")
 
 
 def main() -> None:
