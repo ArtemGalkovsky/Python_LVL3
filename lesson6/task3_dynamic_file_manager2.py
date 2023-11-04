@@ -1,6 +1,7 @@
 from psutil import disk_partitions
 from os import listdir, path as os_path, system, mkdir, symlink, unlink
 system("pip install Send2Trash")
+system("pip install LnkParse3")
 from send2trash import send2trash
 from typing import Union, Optional
 from LnkParse3 import lnk_file
@@ -140,6 +141,8 @@ def main() -> None:
     console_manager = ConsoleFileManager()
     previous_command_output = None
     while True:
+        system("cls")
+        print("\r", end="")
         try:
             console_manager.dir(previous_command_output)
             command = input("Enter command > ")
