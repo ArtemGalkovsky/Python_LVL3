@@ -1,0 +1,5 @@
+<style>
+     body {
+    background: url(subtle-rombus-white-gray-pattern-background_1017-25098.jpg) no-repeat;
+    -webkit-background-size: 10%;}
+  </style>

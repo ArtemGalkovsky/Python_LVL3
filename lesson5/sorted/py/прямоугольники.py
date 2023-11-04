@@ -1,0 +1,13 @@
+from turtle import *
+t = Turtle()
+t.screen.setup(800, 800)
+t.left(90)
+t.fd(100)
+t.left(90)
+t.fd(200)
+t.left(90)
+t.fd(100)
+t.left(90)
+t.fd(200)
+t.screen.exitonclick()
+t.screen.mainloop()

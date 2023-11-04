@@ -1,0 +1,80 @@
+
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <time.h>
+
+using namespace std;
+
+const int deck_size = 52;
+
+enum cardSuit {
+	suit_club,
+	suit_heart,
+	suit_diamond,
+	suit_spade
+};
+
+enum cardSize {
+	size_2,
+	size_3,
+	size_4,
+	size_5,
+	size_6,
+	size_7,
+	size_8,
+	size_9,
+	size_T,
+	size_J,
+	size_Q,
+	size_K,
+	size_A
+};
+
+struct Card
+{
+	cardSuit suit;
+	cardSize size;
+};
+
+void printCard(const Card *card) {
+
+}
+
+void shuffleDeck(vector<Card *>  *deck) {
+	for (int index1 = 0; index1 < deck_size; index1++) {
+		int index2 = rand() % deck_size;
+		swapCard(deck, index1, index2);
+	}
+}
+
+int getCardValue(Card *card) {
+
+}
+
+void swapCard(vector<Card*> *deck, int index2) {
+	Card * tmp = (*deck)[index1];
+	(*deck)[index1] = (*deck)[index2];
+	(*deck)[index2]= tmp;
+}
+
+
+void printCard(const Card *card);
+
+int main()
+{
+	vector<Card *> *deck = new vector<Card *>();
+
+    srand(time(0));
+
+	for (int i = 0;i < 10;i++) {
+        int randomNumber = rand();
+		cout << randomNumber %deck_size << endl;
+	}
+	
+	system("pause");
+	return 0;
+}
+
