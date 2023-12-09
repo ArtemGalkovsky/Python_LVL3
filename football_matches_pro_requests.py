@@ -86,7 +86,7 @@ class FootballParser:
 
     @staticmethod
     def has_2_last_draws_matches(matches: list[dict[str, str | int]]) -> bool:
-        if not matches:
+        if len(matches) < 2:
             print("NO MATCHES!")
             return False
 
