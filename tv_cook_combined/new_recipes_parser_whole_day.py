@@ -11,4 +11,4 @@ db = DB("cooking.db")
 while True:
     parser = CookParser(check(proxies))
     parser.parse_category("Главная страница", db_object=db)
-    sleep(60 * 6)
+    sleep(60 * 60 * 6)
