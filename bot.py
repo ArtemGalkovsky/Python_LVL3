@@ -8,13 +8,17 @@ from requests import get
 from bs4 import BeautifulSoup
 from focast_module import get_forcast_for_town
 
-TOKEN = get("https://artemgalkovsky.pythonanywhere.com/passwordHHHEHEHEHEH").text
-ZODIAC_SIGNS = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
-                "Sagittarius", "Capricorn", "Aquarius, and Pisces"]
+TOKEN = get("https://artemgalkovsky.pythonanywhere.com/DefaultPassword12345").text
+ZODIAC_SIGNS = {"овен": "Aries", "телец": "Taurus", "близнецы": "Gemini",
+                "рак": "Cancer", "лев": "Leo", "дева": "Virgo", "весы": "Libra",
+                "скорпион": "Scorpio", "стрелец": "Sagittarius", "козерог": "Capricorn",
+                "водолей": "Aquarius", "рыбы": "Pisces"}
+
 dp = Dispatcher()
 
 
 def get_horoscope(symbol: str) -> str:
+    print(symbol)
     response = get(f"https://horo.mail.ru/prediction/{symbol}/today/")
     html = response.content
 
@@ -26,9 +30,9 @@ def get_horoscope(symbol: str) -> str:
     return "\n".join(p.text for p in soup.select("p")[:2])
 
 
-@dp.message(Command(*ZODIAC_SIGNS))
+@dp.message(Command(*ZODIAC_SIGNS.keys()))
 async def zodiac_sings(message: Message) -> None:
-    horoscope = get_horoscope(message.text.replace("/", "").strip().lower())
+    horoscope = get_horoscope(ZODIAC_SIGNS[message.text.replace("/", "").strip()].lower())
 
     await message.reply(horoscope)
 
