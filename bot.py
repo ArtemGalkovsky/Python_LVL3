@@ -8,7 +8,7 @@ from requests import get
 from bs4 import BeautifulSoup
 from focast_module import get_forcast_for_town
 
-TOKEN = get("https://artemgalkovsky.pythonanywhere.com/DefaultPassword12345").text
+TOKEN = get("https://artemgalkovsky.pythonanywhere.com").text
 ZODIAC_SIGNS = {"овен": "Aries", "телец": "Taurus", "близнецы": "Gemini",
                 "рак": "Cancer", "лев": "Leo", "дева": "Virgo", "весы": "Libra",
                 "скорпион": "Scorpio", "стрелец": "Sagittarius", "козерог": "Capricorn",
