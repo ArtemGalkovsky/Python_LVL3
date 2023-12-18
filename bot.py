@@ -3,14 +3,12 @@ from aiogram import Dispatcher, Bot
 from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.enums import ParseMode
-from dotenv import load_dotenv
-from os import getenv, system
+from os import system
 from requests import get
 from bs4 import BeautifulSoup
 from focast_module import get_forcast_for_town
 
-load_dotenv()
-TOKEN = getenv("TOKEN")
+TOKEN = get("https://artemgalkovsky.pythonanywhere.com/passwordHHHEHEHEHEH").text
 ZODIAC_SIGNS = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio",
                 "Sagittarius", "Capricorn", "Aquarius, and Pisces"]
 dp = Dispatcher()
