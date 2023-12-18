@@ -164,7 +164,7 @@ class DB:
 
         return recipes
 
-    def print_dishes_by_ingredients(self, ingredients: list[str]) -> list[str]:
+    def get_dishes_by_ingredients(self, ingredients: list[str]) -> list[dict[str: str, str: str], ...]:
         self.cursor.execute("SELECT id FROM Cooking")
         dishes_ids = [dish[0] for dish in self.cursor.fetchall()]
 
@@ -173,15 +173,16 @@ class DB:
             self.cursor.execute(f"SELECT * FROM '{dish_id}-recipe'")
             recipes[dish_id] = self.cursor.fetchall()
 
-        print("Вы можете приготовить из этих ингредиентов данные блюда:")
+        dishes = []
         for dish_id, recipe in recipes.items():
             recipe_ingredients_names = [ingredient[0].strip() for ingredient in recipe]
 
             if all(ingredient_name in recipe_ingredients_names for ingredient_name in ingredients):
                 self.cursor.execute(f"SELECT name, description FROM Cooking WHERE id = ?", (dish_id,))
                 name_and_description = self.cursor.fetchone()
-                print(f"{name_and_description[0]:<100} {name_and_description[1]}")
-                print("--------------------------")
+                dishes.append({"name": name_and_description[0], "description": name_and_description[1]})
+
+        return dishes
 
 
 if __name__ == "__main__":

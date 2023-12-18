@@ -35,15 +35,19 @@ while True:
 
         case 2:
             ingredients = input("Введите ингредиенты через запятую > ").split(",")
-            db.print_dishes_by_ingredients(ingredients)
+            print("Вы можете приготовить из этих ингредиентов данные блюда:")
+            dishes = db.get_dishes_by_ingredients(ingredients)
+
+            for dish in dishes:
+                print(f"{dish['name']:<100} {dish['description']}")
+                print("--------------------------")
+
         case 3:
             dish_name = input("Введите название блюда > ").strip()
             print("Требуемые ингредиенты:")
             recipes = db.get_recipes_by_dishes_name(dish_name)
 
-            print(recipes)
             for recipe in recipes:
-                print(recipe)
                 for ingredient, amount in recipe:
                     print(f"{ingredient:<100} {amount}")
                 print("----------------")
