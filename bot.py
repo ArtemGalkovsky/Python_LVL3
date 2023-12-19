@@ -6,9 +6,9 @@ from aiogram.enums import ParseMode
 from os import system
 from requests import get
 from bs4 import BeautifulSoup
-from focast_module import get_forcast_for_town
+from forcast_module import get_forcast_for_town
 
-TOKEN = get("https://artemgalkovsky.pythonanywhere.com").text
+TOKEN = get("https://artemgalkovsky.pythonanywhere.com/GA12345").text
 ZODIAC_SIGNS = {"овен": "Aries", "телец": "Taurus", "близнецы": "Gemini",
                 "рак": "Cancer", "лев": "Leo", "дева": "Virgo", "весы": "Libra",
                 "скорпион": "Scorpio", "стрелец": "Sagittarius", "козерог": "Capricorn",

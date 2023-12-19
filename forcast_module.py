@@ -37,7 +37,7 @@ def get_forcast_for_town(town: str) -> str:
     {current_split[0]} {current_split[1]} {current_split[2]}:
 Температура: {current_split[6]}
 {current_split[7]}: {current_split[8]}
-/for{current_split[9]}: {current_split[10]} {current_split[11]}{current_split[12]}
+{current_split[9]}: {current_split[10]} {current_split[11]}{current_split[12]}
     
     Сегодня:
     """
