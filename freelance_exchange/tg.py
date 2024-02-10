@@ -115,6 +115,8 @@ async def create_task(message: Message, state: FSMContext):
         """
 
         await send_all(*langs.split(","), task=task)
+        await message.reply("Задача успешно создана!")
+        await message.answer(task)
     else:
         await message.reply("Вы не задали нужные параметры для создания задания!")
 
