@@ -18,8 +18,8 @@ from re import compile, fullmatch
 
 dp = Dispatcher()
 
-TOKEN = get("https://artemgalkovsky.pythonanywhere.com/GA9831").text
-KUFAR_CHANNEL_ID = -1002116198639
+TOKEN = 
+KUFAR_CHANNEL_ID = 
 IMAGES_FOLDER = f"{getcwd()}/images/"
 TITLE_MAX_SIZE = 40
 LIMIT_POSTS_COMMAND = 10
