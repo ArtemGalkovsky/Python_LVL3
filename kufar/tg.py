@@ -18,13 +18,15 @@ from re import compile, fullmatch
 
 dp = Dispatcher()
 
-TOKEN = 
-KUFAR_CHANNEL_ID = 
-IMAGES_FOLDER = f"{getcwd()}/images/"
+TOKEN = get("").text
+KUFAR_CHANNEL_ID = -1002116198639
+IMAGES_FOLDER = f"{getcwd()}/static/images/"
 TITLE_MAX_SIZE = 40
 LIMIT_POSTS_COMMAND = 10
 
-bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+
+async def get_bot():
+    return Bot(TOKEN, parse_mode=ParseMode.HTML)
 
 
 # def is_mail_valid(email: str) -> bool:
@@ -217,13 +219,15 @@ async def enter_description(message: Message, state: FSMContext):
 
 
 async def download_high_resolution_photos(message: Message, destination_folder: str):
-    for photo in message.photo:
-        await message.bot.download(file=photo.file_id,
-                                   destination=f"{destination_folder}/{photo.file_id}.png")
+    # for photo in message.photo[-1]:
 
-    for index, photo_name in enumerate(listdir(destination_folder), 1):  # removes low quality photos
-        if index % 2 == 0 or index % 3 == 0:
-            remove(f"{destination_folder}/{photo_name}")
+    photo = message.photo[-1]
+    await message.bot.download(file=photo.file_id,
+                               destination=f"{destination_folder}/{photo.file_id}.png")
+
+    # for index, photo_name in enumerate(listdir(destination_folder), 1):  # removes low quality photos
+    #     if index % 2 == 0 or index % 3 == 0:
+    #         remove(f"{destination_folder}/{photo_name}")
 
 
 def prepare_post_text(user_telegram_id: int, data: dict):
@@ -293,18 +297,34 @@ async def back_to_media(callback: CallbackQuery, state: FSMContext):
                                   ]))
 
 
+async def send_post(post_unique_id: str):
+    data = database.moderation_posts.get_post_data_by_post_id(post_unique_id)
+
+    prepared_data = {
+        "post_unique_id": data[0],
+        "title": data[2],
+        "description": data[3],
+    }
+
+    messages = await (await get_bot()).send_media_group(KUFAR_CHANNEL_ID, await create_post(data[1], prepared_data))
+
+    database.posts_db.add_post(data[0], data[1],
+                               data[2], data[3],
+                               messages[-1].chat.id, messages[-1].message_id)
+
+    database.moderation_posts.remove(data[0])
+
+
 @dp.message(Command("done"), StateFilter(PostCreationStates.SEND))
 async def post_creation_done(message: Message, state: FSMContext):
     post_data = await state.get_data()
 
-    messages = await bot.send_media_group(KUFAR_CHANNEL_ID, await create_post(message.from_user.id, post_data))
-
-    database.posts_db.add_post(post_data["post_unique_id"], message.from_user.id,
-                               post_data["title"], post_data["description"],
-                               messages[-1].chat.id, messages[-1].message_id)
+    database.moderation_posts.add_post(post_data["post_unique_id"], message.from_user.id,
+                                       post_data["title"], post_data["description"])
     await state.set_state(RegistrationStates.END)
     await state.set_data({})
-    await message.answer("<b>Пост успешно отправлен! (Для удаления напишите /posts и выберете нужный пост!</b>")
+    await message.answer(
+        "<b>Пост успешно отправлен на модерацию! (Для удаления напишите /posts и выберете нужный пост!</b>")
 
 
 @dp.callback_query(F.data.startswith("next_"), StateFilter(RegistrationStates.END))
@@ -330,7 +350,7 @@ async def next_n_posts(callback: CallbackQuery, state: StateFilter):
 
 
 @dp.callback_query(F.data.startswith("back_"), StateFilter(RegistrationStates.END))
-async def next_n_posts(callback: CallbackQuery, state: StateFilter):
+async def back_n_posts(callback: CallbackQuery, state: StateFilter):
     start_index = int(callback.data.split("_")[1]) - LIMIT_POSTS_COMMAND
 
     posts = database.posts_db.get_user_posts(callback.message.chat.id, start_index, LIMIT_POSTS_COMMAND + 1)
@@ -414,7 +434,7 @@ async def change_post_title(message: Message, state: FSMContext):
 
     text = prepare_post_text(message.chat.id, data)
 
-    await bot.edit_message_caption(kufar_channel_id, kufar_channel_message_id, caption=text)
+    await (await get_bot()).edit_message_caption(kufar_channel_id, kufar_channel_message_id, caption=text)
     database.posts_db.update_post_title(post_unique_id, title)
     await message.answer(f"Название успешно изменено на - {title}")
 
@@ -441,7 +461,7 @@ async def change_post_title(message: Message, state: FSMContext):
 
     text = prepare_post_text(message.chat.id, data)
 
-    await bot.edit_message_caption(kufar_channel_id, kufar_channel_message_id, caption=text)
+    await (await get_bot()).edit_message_caption(kufar_channel_id, kufar_channel_message_id, caption=text)
     database.posts_db.update_post_description(post_unique_id, description)
     await message.answer(f"Описание успешно изменено на - {description}")
 
@@ -480,7 +500,7 @@ async def delete_post(message: Message, state: FSMContext):
     kufar_channel_message_id = database.posts_db.get_post_data_by_post_id(post_unique_id)[6]
     kufar_channel_id = database.posts_db.get_post_data_by_post_id(post_unique_id)[5]
 
-    await bot.delete_message(kufar_channel_id, kufar_channel_message_id)
+    await (await get_bot()).delete_message(kufar_channel_id, kufar_channel_message_id)
     await state.set_state(RegistrationStates.END)
     await message.answer("<b>Пост удалён!</b>")
 
@@ -520,8 +540,8 @@ async def help_command(message: Message):
 
 
 async def run_bot() -> None:
-    await set_commands(bot)
-    await dp.start_polling(bot)
+    await set_commands(await get_bot())
+    await dp.start_polling(await get_bot())
 
 
 if __name__ == '__main__':
