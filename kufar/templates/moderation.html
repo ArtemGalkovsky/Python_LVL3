@@ -40,6 +40,8 @@
                 fetch (`/${destination}?uniqueid=${button.getAttribute("data-uniqueid")}`, {
                     method: "POST"
                 }) 
+
+                reload()
             })
         });
     </script>
