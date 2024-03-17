@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    flex: 1 0 250px;
+    font-size: 40pt;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
+#headerImg {
+    position: relative;
+    width: 800px;
+    height: 250px;
+}
+
+#headerImg img {
+    display: block;
+    position: absolute;
+    transition: all 2.5s;
+}

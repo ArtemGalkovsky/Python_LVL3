@@ -1,0 +1,46 @@
+#rotator {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#left,
+#right {
+    width: 0;
+    height: 0;
+    border: 60px solid transparent;
+}
+
+#left {
+    border-right-color: rgb(3, 160, 123);
+}
+
+#right {
+    border-left-color: rgb(3, 160, 123);
+}
+
+#container {
+    width: 730px;
+    height: 439px;
+    border: 5px solid rgb(3, 160, 123);
+    position: relative;
+    overflow: hidden;
+}
+
+#photo img {
+    width: 730px;
+    float: left;
+    margin: 0;
+}
+
+#counter {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    font-size: 24pt;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 7px;
+}
