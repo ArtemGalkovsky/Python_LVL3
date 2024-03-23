@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коссовский замок</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/rotator.css') }}">
+    <script src="{{ url_for('static', filename='files/js/nav.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='files/js/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='files/js/rotator.js') }}" defer></script>
+</head>
+
+<body>
+    <nav>
+        {% include "nav.html" %}
+    </nav>
+    <div id="bock-content">
+        <header>
+
+        </header>
+        <main>
+            <article class="allone">
+                <h2>{{ castle_data[1] }}</h2>
+                <p>{{ castle_data[3] }}</p>
+                <div id="rotator">
+                    <div id="left" onclick="movePhoto(1)"></div>
+                    <div id="container">
+                        <div id="photo">
+                            {% for photo in images %}
+                                <img src="{{ url_for('static', filename=photo) }}" alt="Фото не найдено">
+                            {% endfor %}
+                        </div>
+
+                        <div id="count"></div>
+                    </div>
+                    <div id="right" onclick="movePhoto(-1)"></div>
+                </div>
+                <p>
+                    {% for paragraph in paragraphs %}
+                        <p>{{ paragraph }}</p>
+                    {% endfor %}
+                </p>
+            </article>
+
+        </main>
+        <footer>
+            Сайт создан учащимися школы «Cleverland»
+        </footer>
+    </div>
+
+</body>
+
+</html>

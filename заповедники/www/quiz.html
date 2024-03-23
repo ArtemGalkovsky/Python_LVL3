@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина </title>
+    <link rel="stylesheet" href="files/css/template.css">
+    <link rel="stylesheet" href="files/css/quiz.css">
+    <link rel="stylesheet" href="files/css/nav.css">
+    <script src="files/js/quiz.js" defer></script>
+    <script src="files/js/nav.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        {% include "nav.html" %}
+    </nav>
+    <div id="block-content">
+
+        <main>
+            <article class="alone">
+                <h2> Вы можете проверить свои знания в игре-викторине<br>"Заповедные места Беларуси" </h2>
+                <input type="button" onclick="start()" value="Начать игру">
+            </article>
+            <div id="time">
+                <div id="timeLine"> </div>
+            </div>
+        </main>
+        <footer>
+            Сайт создан учащимися школы «Cleverland»
+        </footer>
+    </div>
+</body>
+
+</html>

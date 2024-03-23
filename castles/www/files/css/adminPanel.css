@@ -1,0 +1,123 @@
+div.error {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}
+
+div.castle_data {
+    padding: 30px;
+    padding-top: 90px;
+    width: 900px;
+}
+
+.castle_info {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.castle_preview {
+    margin-top: 30px;
+    width: 100%
+}
+
+input[type="file"] {
+    width: 100%;
+    visibility: hidden;
+    display: inline;
+    float: left;
+}
+
+label.change_album_image_label, label.change_preview_label {
+    background-color: cyan;
+    display: inline;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+div.castle_data > textarea, div.castle_data > input {
+    display: block;
+    width: 100%;
+}
+
+div.castle_data textarea {
+    height: 100px;
+    resize: none;
+    padding-top: 10px;
+}
+
+div.castle_data > img.castle_img {
+    margin-top: 10px;
+}
+
+.castle_preview {
+    float: left;
+}
+
+button.button_delete_paragraph {
+    width: 100%;
+    display: block;
+    margin-top: 0;
+    padding-inline: 0;
+}
+
+button.button_restore_paragraph {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.paragraph_middle_container > textarea {
+    width: 100%;
+    float: left;
+}
+
+.add_paragraph_button {
+    margin-top: 30px;
+}
+
+.castle_image {
+    width: 100%;
+    float: left;
+}
+
+.nav_up, .nav_down {
+    float: right;
+    width: 3%;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.image_container {
+    margin-top: 100px;
+}
+
+.album_image_middle_container {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.album_image_middle_container > button {
+    width: 100%;
+}
+
+.submit_button {
+    margin-top: 100px;
+}
+
+.submit_button, .delete_button {
+    display: block;
+    width: 100%;
+    background-color: cyan;
+}
+
+.delete_button {
+    background-color: red;
+
+}
+
+.add_castle_id_input, .add_castle_title_input, .add_create_button {
+    margin-top: 10px;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 15px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/header.css') }}">
+    <script src="{{ url_for('static', filename='files/js/nav.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='files/js/header.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='files/js/galery.js') }}" defer></script>
+
+</head>
+
+<body>
+    <nav>
+        {% include "nav.html" %}
+    </nav>
+    <div id="bock-content">
+        <header>
+
+        </header>
+        <main>
+            {% for preview in previews %}
+                <article>
+                    <h2>{{ preview[1] }}</h2>
+                    <img src="{{ url_for('static', filename=preview[2]) }}" class="preview">
+                    <p>
+                        Замок был построен в начале XVI века в небольшом поселении Мир. За свою долгую историю замок сменил ни одного хозяина и повидал ни одно сражение. В его покоях жил род Ильиничей, устраивали балы великие Радзивиллы, опочивал атаман Святополк-Мирской.
+                    </p>
+                    <input type="button" value="Читать далее" onclick="window.open('{{ preview[4] }}')">
+                </article>
+            {% endfor %}
+        </main>
+        <footer>
+            Сайт создан учащимися школы «Cleverland»
+        </footer>
+    </div>
+
+</body>
+
+</html>

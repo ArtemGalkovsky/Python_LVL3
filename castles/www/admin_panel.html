@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <script src="{{ url_for('static', filename='files/js/adminPanel.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/rotator.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/css/adminPanel.css') }}">
+</head>
+<body>
+    <nav>
+        {% include "nav.html" %}
+    </nav>
+    <main>
+        <div class="castle_data">
+            
+        </div>
+    </main>
+    <script>const STATICFOLDER = "{{ url_for('static', filename='') }}"</script>
+</body>
+</html>

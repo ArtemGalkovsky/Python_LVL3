@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="files/css/template.css">
+    <link rel="stylesheet" href="files/css/header.css">
+    <script src="files/js/nav.js" defer></script>
+    <script src="files/js/header.js" defer></script>
+    <link rel="stylesheet" href="files/css/rotator.css">
+    <script src="files/js/rotator.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        {% include "nav.html" %}
+    </nav>
+    <div id="block-content">
+        <header></header>
+        <main>
+            <article class="alone">
+                <h2>{{ name }}</h2>
+                {% for p in preview %}
+                    <p>{{ p }}</p>
+                {% endfor %}
+                <div id="rotator">
+                    <div id="left" onclick="movePhoto(1)"></div>
+                    <div id="container">
+                        <div id="photo">
+                            {% for image in images %}
+                                <img src="{{ image }}" alt="">
+                            {% endfor %}
+                        </div>
+                        <div id="counter"> </div>
+                    </div>
+                    <div id="right" onclick="movePhoto(-1)"></div>
+
+                </div>
+                {% for p in description %}
+                    <p>{{ p }}</p>
+                {% endfor %}
+            </article>
+        </main>
+        <footer>Сайт создан учащимися школы «Cleverland»</footer>
+    </div>
+
+
+</body>
+
+</html>

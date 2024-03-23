@@ -1,0 +1,33 @@
+        <ul>
+            <li>
+                {% if is_admin_panel == 1 %}
+                    <a href="#">Редактировать</a>
+                    <ul class="castle_edit">
+                        {% for castle_name in castle_names %}
+                            <li><a  href="#{{ castle_name[1] }}">{{ castle_name[0] }}</a></li>
+                        {% endfor %}
+                        <li class="add_castle"><a href="#add">Добавить замок</a></li>
+                        <li class="add_castle"><a href="#add1">test</a></li>
+                        <li class="add_castle"><a href="#add2">test2</a></li>
+                    </ul>
+                {% endif %}
+            </li>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="#">Замки Беларуси</a>
+                <ul>
+                    {% for castle_name in castle_names %}
+                        <li><a href="{{ castle_name[1] }}.html">{{ castle_name[0] }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="photos.html">Фотогалерея</a></li>
+            <li><a href="quiz.html">Викторина</a></li>
+            <li class="admin_panel">
+                {% if is_admin_panel == 1 %}
+                    <a href="/sign_out"><img src="{{ url_for('static', filename='files/img/header/exit.png') }}" alt="Exit"></a>
+                {% else %}
+                   <a href="/admin_panel_login"><img src="{{ url_for('static', filename='files/img/header/user-128.png') }}" alt="Admin"></a>
+                {% endif %}
+                </a>
+            </li>
+        </ul>

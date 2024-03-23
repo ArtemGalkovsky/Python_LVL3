@@ -1,0 +1,54 @@
+.allone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+h2 {
+    text-align: center;
+}
+
+input[type="button"] {
+    margin: 50px;
+    font-size: 22pt;
+}
+
+#ansvers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 1px;
+    width: 96%;
+}
+
+#quest {
+    width: 96%;
+    flex: 1 1 1px;
+    background-color: rgb(242, 239, 208);
+    color: brown;
+    font-family: 'book antiqua', Georgia;
+    border: 2px solid #997777;
+    padding: 10px;
+    font-size: 18pt;
+}
+
+.ans {
+    width: 45%;
+    background-color: rgb(242, 239, 208);
+    color: brown;
+    font-family: 'book antiqua', Georgia;
+    border: 2px solid #997777;
+    padding: 10px;
+    font-size: 18pt;
+    margin: 1%;
+}
+
+.ans:hover {
+    background-color: brown;
+    color: rgb(242, 239, 208);
+    cursor: pointer;
+}

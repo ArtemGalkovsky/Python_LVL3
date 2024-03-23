@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.login_container {
+    width: 30%;
+    height: 30%;
+    text-align: center;
+    margin-top: 25%;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+}
+
+form > input, form > button {
+    font-size: 5vh;
+    width: 100%;
+    padding-block: 0;
+    padding-inline: 0;
+    display: block;
+    height: 10vh;
+}
+
+input {
+    text-indent: 1vw;
+}
+
+input, button {
+    display: block;
+    margin-top: 1vh;
+    outline: 0;
+    border: 0;
+    border-radius: 1vw;
+}
+
+button {
+    background-color: chocolate;
+    color: white;
+}
