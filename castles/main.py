@@ -6,6 +6,7 @@ from datetime import timedelta
 from time import time
 from shutil import copyfile
 from os import listdir, mkdir
+from urllib.parse import unquote
 
 STATIC_FOLDER = "www"
 TEMP_FOLDER = f"{STATIC_FOLDER}/files/temp"
@@ -87,7 +88,7 @@ def ico():
 
 @app.route("/load", methods=["POST"])
 def load_castle_data():
-    castle_url = request.data.decode("utf-8")
+    castle_url = unquote(request.data.decode("utf-8"))
 
     try:
         castle_name = databases.castles.get_castle_name_by_url(castle_url)
